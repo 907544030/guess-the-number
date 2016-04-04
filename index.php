@@ -1,9 +1,8 @@
 <?php
 function create_number($length)
 {
-    $num .= intval(rand(1, 9));
-    for ($a; $a < ($length - 1); $a++) {
-        $num .= intval(rand(1, 9));
+    for ($a; $a < $length; $a++) {
+        $num .= intval(rand(0, 9));
     }
     return base64_encode($num);
 }
@@ -52,9 +51,7 @@ if (isset($_GET['num']) and isset($_GET['length'])) {
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="#" onclick="alert('输入<?php
-echo $length;
-?>位数字\nA前面的数字表示有A个数字与位置完全一致\nB前面的数字表示存在有B个数字正确但位置不对')">规则</a></li>
+           
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">重设 <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -64,7 +61,9 @@ for ($row = 4; $row < 10; $row++) {
 }
 ?>
               </ul>
-            </li>
+            </li> <li role="presentation"><a href="#" onclick="alert('输入<?php
+echo $length;
+?>位数字\nA前面的数字表示有A个数字与位置完全一致\nB前面的数字表示存在有B个数字正确但位置不对')">规则</a></li>
           </ul>
         </nav>
         <h3 class="text-muted">猜数字</h3>

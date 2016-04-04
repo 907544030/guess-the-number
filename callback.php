@@ -1,11 +1,11 @@
 <?php
 if (isset($_GET['num']) and isset($_GET['guess']) and isset($_GET['count']) and isset($_GET['length'])) {
-    $guess   = (int) $_GET['guess'];
     $length  = (int) $_GET['length'];
     $counter = (int) $_GET['count'];
-    $guess   = str_split($guess);
-    $num     = str_split(base64_decode($_GET['num']));
-    if (count($guess) == $length) {
+	$guess=strval($_GET['guess']);
+    if (strlen($guess) == $length) {
+		$guess   = str_split(str_pad($guess,$length,'0',STR_PAD_LEFT));
+    $num     = str_split(str_pad(strval(base64_decode($_GET['num'])),$length,'0',STR_PAD_LEFT));
         //计算a
         $a = 0;
         for ($row = 0; $row < count($guess); $row++) {
