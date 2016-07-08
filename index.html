@@ -282,7 +282,7 @@ h6,.h6 {
             }
             num = num.split("");
             function show() {
-                document.getElementById("result").innerHTML = '<div class="block"><h3 class="text-center">' + num.join("") + '</h3></div>' + document.getElementById("result").innerHTML;
+                document.getElementById("result").innerHTML = '<div class="block"><h3 class="text-center">答案是：' + num.join("") + '</h3></div>' + document.getElementById("result").innerHTML;
             }
             function guess() {
                 var guess = document.getElementById("num").value;
@@ -313,17 +313,16 @@ h6,.h6 {
                     counter++;
                     document.getElementById("result").innerHTML = '<div class="block"><div class="counter">' + counter + '</div><h2>' + guess.join("") + '</h2><h4>' + a + 'A ' + b + 'B</h4></div>' + document.getElementById("result").innerHTML;
                     if (a == length) {
-                        document.getElementById("result").innerHTML = '<div class="block"><h3 class="text-center">恭喜你猜中了，<a href="?length=' + (Number(length) + 1) + '">挑战更高位数</a></h3></div>' + document.getElementById("result").innerHTML;
+                        document.getElementById("result").innerHTML = '<div class="block"><h3 class="text-center">恭喜你猜中了，试试<a href="?length=' + Number(length) + '">再来一次</a>或<a href="?length=' + (Number(length) + 1) + '">挑战更高位数</a></h3></div>' + document.getElementById("result").innerHTML;
                     }
                 } else {
                     document.getElementById("result").innerHTML = '<div class="block"><h3 class="text-center">数字位数错误</h3></div>' + document.getElementById("result").innerHTML;
                 }
                 empty();
-                if (counter == 30) {
+                if (counter == 25) {
                     document.getElementById("result").innerHTML = '<div class="block"><h3 class="text-center">想不出来了？<a href="#" onclick="show()">查看答案</a></h3></div>' + document.getElementById("result").innerHTML;
                 }
             }
         </script>
     </body>
-
 </html>
