@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta name="renderer" content="webkit">
+        <!-- 360浏览器默认用极速核(webkit) -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!--避免IE使用兼容模式-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
+        />
+        <meta name="screen-orientation" content="portrait">
+        <!-- UC强制竖屏 -->
+        <meta name="x5-orientation" content="portrait" />
+        <!-- QQ强制竖屏 -->
+        <meta name="full-screen" content="yes">
+        <!-- UC强制全屏 -->
+        <meta name="x5-fullscreen" content="true" />
+        <!-- QQ强制全屏 -->
+        <meta name="browsermode" content="application" />
+        <!-- UC应用模式 -->
+        <meta name="x5-page-mode" content="app" />
+        <!-- UC应用模式 -->
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- windows phone 点击无高光 -->
+        <title>
+            猜数字
+        </title>
+        <style>
+body {
+	margin:0;
+	color:#5a5a5a;
+}
+body,html,a {
+	font-family:"Helvetica Neue",Helvetica,Microsoft Yahei,Hiragino Sans GB,WenQuanYi Micro Hei,sans-serif;
+}
+h1,h2,h3,h4 {
+	margin:0 0 .5rem;
+	font-weight:normal;
+	line-height:1;
+	color:#2a2a2a;
+}
+h1,.h1 {
+	font-size:36px;
+}
+h2,.h2 {
+	font-size:30px;
+}
+h3,.h3 {
+	font-size:24px;
+}
+h4,.h4 {
+	font-size:18px;
+}
+h5,.h5 {
+	font-size:14px;
+}
+h6,.h6 {
+	font-size:12px;
+}
+.ui-block {
+	width:25%;
+	border:0;
+	float:left;
+	min-height:1px;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+.form-control {
+	display:block;
+	width:100%;
+	height:46px;
+	font-size:25px;
+	line-height:1.3333333;
+	color:#555;
+	margin-bottom:10px;
+	background-color:#fff;
+	background-image:none;
+	border:none;
+	border-bottom:1px solid #ccc;
+}
+.input-addon {
+	color:#777;
+}
+.container {
+	padding-right:15px;
+	padding-left:15px;
+	margin-right:auto;
+	margin-left:auto;
+}
+@media  (min-width:768px) {
+	.container {
+	width:750px;
+}
+}@media (min-width:992px) {
+	.container {
+	width:970px;
+}
+}@media (min-width:1200px) {
+	.container {
+	width:1170px;
+}
+}.clearfix:before,.clearfix:after,.dl-horizontal
+            dd:before,.dl-horizontal dd:after,.container:before,.container:after,.container-fluid:before,.container-fluid:after,.row:before,.row:after,.form-horizontal .form-group:before,.form-horizontal .form-group:after,.btn-toolbar:before,.btn-toolbar:after,.btn-group-vertical > .btn-group:before,.btn-group-vertical > .btn-group:after,.nav:before,.nav:after,.navbar:before,.navbar:after,.navbar-header:before,.navbar-header:after,.navbar-collapse:before,.navbar-collapse:after,.pager:before,.pager:after,.panel-body:before,.panel-body:after,.modal-footer:before,.modal-footer:after {
+	display:table;
+	content:" ";
+}
+.row {
+	margin-right:-15px;
+	margin-left:-15px;
+}
+.btn {
+	display:inline-block;
+	padding:6px 12px;
+	margin:0;
+	font-size:14px;
+	font-weight:400;
+	line-height:1.42857143;
+	text-align:center;
+	white-space:nowrap;
+	vertical-align:middle;
+	-ms-touch-action:manipulation;
+	touch-action:manipulation;
+	cursor:pointer;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+	background-image:none;
+	border:none;
+	border-radius:0px;
+}
+.btn-block {
+	display:block;
+	width:100%;
+}
+.btn-lg {
+	padding:30px 16px;
+	font-size:21px;
+	line-height:1.3333333;
+}
+.btn-num {
+	background-color:#ededed;
+}
+.btn-primary {
+	color:#fff;
+	background-color:#009bff;
+}
+.btn-danger {
+	color:#fff;
+	background-color:#e64759;
+}
+.counter {
+	display:inline-block;
+	float:left;
+	margin-right:15px;
+	width:48px;
+	height:48px;
+	text-align:center;
+	line-height:48px;
+	color:white;
+	font-size:1.5rem;
+	border-radius:50%;
+	background:#009bff;
+}
+.block {
+	display:block;
+	position:relative;
+	padding-top:12px;
+}
+.text-center {
+	text-align:center;
+}
+
+        </style>
+    </head>
+    
+    <body>
+        <div class="container">
+            <div class="block">
+                <h3>
+                    猜数字
+                </h3>
+            </div>
+            <input class="form-control input-lg" type="text" id="num">
+            <div class="row">
+                <div class="ui-block">
+                    <button type="button" class="btn btn-num btn-lg btn-block" onclick="add(1);">
+                        1
+                    </button>
+                </div>
+                <div class="ui-block">
+                    <button type="button" class="btn btn-num btn-lg btn-block" onclick="add(2);">
+                        2
+                    </button>
+                </div>
+                <div class="ui-block">
+                    <button type="button" class="btn btn-num btn-lg btn-block" onclick="add(3);">
+                        3
+                    </button>
+                </div>
+                <div class="ui-block">
+                    <button type="button" class="btn btn-danger btn-lg btn-block" onclick="empty();">
+                        清空
+                    </button>
+                </div>
+                <div class="ui-block">
+                    <button type="button" class="btn btn-num btn-lg btn-block" onclick="add(4);">
+                        4
+                    </button>
+                </div>
+                <div class="ui-block">
+                    <button type="button" class="btn btn-num btn-lg btn-block" onclick="add(5);">
+                        5
+                    </button>
+                </div>
+                <div class="ui-block">
+                    <button type="button" class="btn btn-num btn-lg btn-block" onclick="add(6);">
+                        6
+                    </button>
+                </div>
+                <div class="ui-block">
+                    <button type="button" class="btn btn-num btn-lg btn-block" onclick="add(0);">
+                        0
+                    </button>
+                </div>
+                <div class="ui-block">
+                    <button type="button" class="btn btn-num btn-lg btn-block" onclick="add(7);">
+                        7
+                    </button>
+                </div>
+                <div class="ui-block">
+                    <button type="button" class="btn btn-num btn-lg btn-block" onclick="add(8);">
+                        8
+                    </button>
+                </div>
+                <div class="ui-block">
+                    <button type="button" class="btn btn-num btn-lg btn-block" onclick="add(9);">
+                        9
+                    </button>
+                </div>
+                <div class="ui-block">
+                    <button id="button" type="button" class="btn btn-primary btn-lg btn-block"
+                    onclick="guess();" ;>
+                        提交
+                    </button>
+                </div>
+            </div>
+            <div id="result">
+            </div>
+        </div>
+        <script>
+            var length = (getParameterByName("length") == "") ? 6 : getParameterByName("length");
+            var counter = 0;
+            document.getElementById("result").innerHTML = '<div class="block"><p>输入<b>' + length + '</b>位数字<br>A前面的数字表示有A个数字与位置完全一致<br>B前面的数字表示存在有B个数字正确但位置不对<br>举例：若正确答案为235876，猜的数字为248501，这时的情况，就是1A2B；其中，第一个2的数字和位置都已经对了，记为1A，而5和8这两个数字对了，位置没对，因此记为2B。</p></div>';
+            function add(i) {
+                document.getElementById("num").value += i;
+            }
+            function empty() {
+                document.getElementById("num").value = "";
+            }
+            function getParameterByName(name) {
+                name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+                return results == null ? "": decodeURIComponent(results[1].replace(/\+/g, " "));
+            }
+            function count_array(array) {
+                var i = 0;
+                for (var j in array) {
+                    i++
+                };
+                return i;
+            }
+            var num = "";
+            var i = 0;
+            for (i = 0; i < length; i++) {
+                num += Math.floor(Math.random() * 10);
+            }
+            num = num.split("");
+            function show() {
+                document.getElementById("result").innerHTML = '<div class="block"><h3 class="text-center">' + num.join("") + '</h3></div>' + document.getElementById("result").innerHTML;
+            }
+            function guess() {
+                var guess = document.getElementById("num").value;
+                guess = guess.split("");
+                if (length == count_array(guess)) {
+                    var a = 0;
+                    for (i = 0; i < count_array(guess); i++) {
+                        if (guess[i] == num[i]) {
+                            a++;
+                        }
+                    }
+                    var guess_array = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                    var num_array = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                    var b = 0;
+                    for (i = 0; i < count_array(guess); i++) {
+                        var array = guess[i];
+                        guess_array[array]++;
+                    }
+                    for (i = 0; i < count_array(num); i++) {
+                        array = num[i];
+                        num_array[array]++;
+                    }
+                    for (i = 0; i < 10; i++) {
+                        var count = Math.min(num_array[i], guess_array[i]);
+                        b += count;
+                    }
+                    b -= a;
+                    counter++;
+                    document.getElementById("result").innerHTML = '<div class="block"><div class="counter">' + counter + '</div><h2>' + guess.join("") + '</h2><h4>' + a + 'A ' + b + 'B</h4></div>' + document.getElementById("result").innerHTML;
+                    if (a == length) {
+                        document.getElementById("result").innerHTML = '<div class="block"><h3 class="text-center">恭喜你猜中了，<a href="?length=' + (Number(length) + 1) + '">挑战更高位数</a></h3></div>' + document.getElementById("result").innerHTML;
+                    }
+                } else {
+                    document.getElementById("result").innerHTML = '<div class="block"><h3 class="text-center">数字位数错误</h3></div>' + document.getElementById("result").innerHTML;
+                }
+                empty();
+                if (counter == 30) {
+                    document.getElementById("result").innerHTML = '<div class="block"><h3 class="text-center">想不出来了？<a href="#" onclick="show()">查看答案</a></h3></div>' + document.getElementById("result").innerHTML;
+                }
+            }
+        </script>
+    </body>
+
+</html>
